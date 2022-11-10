@@ -1,0 +1,789 @@
+@import './mixins';
+@import './variables';
+
+html,
+body {
+   font-family: 'Allods-West';
+   font-style: normal;
+   font-weight: 400;
+   @include adaptiv-value('font-size',18,14,0);
+   line-height: 100%;
+   min-height: 100%; // чтобы вся оболочка wrapper была на всю высоту экрана
+   overflow-x: hidden; // чтобы ничего за экран не вылезло
+}
+
+.d-f {
+   display: flex;
+}
+
+.d-g {
+   display: grid;
+}
+
+.jc-sb {
+   justify-content: space-between;
+}
+
+.jc-c {
+   justify-content: center;
+}
+
+.ai-c {
+   align-items: center;
+}
+
+.fd-c {
+   flex-direction: column;
+}
+
+.fw-w {
+   flex-wrap: wrap;
+}
+
+
+.ta-c {
+   text-align: center;
+}
+
+.ta-e {
+   text-align: end;
+}
+
+.gtc-2 {
+   grid-template-columns: repeat(2, 1fr);
+
+   @include breakpoint(768px) {
+      grid-template-columns: 1fr;
+   }
+}
+
+.gtc-3 {
+   grid-template-columns: repeat(3, 1fr);
+
+   @include breakpoint(768px) {
+      grid-template-columns: 1fr;
+   }
+}
+
+.gtc-4 {
+   grid-template-columns: repeat(4, 1fr);
+
+   @include breakpoint(768px) {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   @include breakpoint(425px) {
+      grid-template-columns: 1fr;
+   }
+}
+
+.card-type1 {
+   cursor: pointer;
+
+   figure {
+      position: relative;
+
+      figcaption {
+         transform: translateY(-50%);
+         background: rgba(255, 255, 255, 0.71);
+         box-shadow: 0px 20px 23px rgba(225, 225, 225, 0.35);
+         backdrop-filter: blur(10px);
+         @include adaptiv-value('padding-top',45,15,0);
+         @include adaptiv-value('padding-right',25,10,0);
+         @include adaptiv-value('padding-bottom',45,15,0);
+         @include adaptiv-value('padding-left',25,10,0);
+         width: 90%;
+         border-radius: 0px 100px 100px 0px;
+	      @include adaptiv-value('font-size',24,14,0);
+         color: #000000;
+         transition: 0.2s;
+         @include breakpoint(768px){
+         background: $green;
+         color:#fff;
+      }
+      }
+
+
+   }
+
+   &:hover{
+      figcaption{
+         background: $green;
+         color:#fff;
+      }
+   }
+}
+
+.button {
+   background: transparent;
+   border: none;
+   cursor: pointer;
+   color: $green;
+	@include adaptiv-value('padding-top',10,5,0);
+	@include adaptiv-value('padding-right',15,10,0);
+	@include adaptiv-value('padding-bottom',10,5,0);
+	@include adaptiv-value('padding-left',15,10,0);
+   border: 1px solid $green;
+   border-radius: 100%;
+
+   svg,img{
+      @include adaptiv-value('width',10,5,0);
+      @include adaptiv-value('height',16,8,0);
+   }
+
+   // .button__vector
+
+   &__vector {}
+
+   &--right {
+      &:hover {
+         img {
+            animation: go-to-right 0.5s linear;
+         }
+      }
+   }
+
+   &--left {
+      img {
+         transform: rotate(180deg);
+      }
+
+      &:hover {
+         img {
+            animation: go-to-left 0.5s linear;
+         }
+      }
+   }
+}
+
+@keyframes go-to-right {
+   0% {
+      transform: translateX(0px);
+   }
+
+   50% {
+      transform: translateX(50%);
+   }
+
+   100% {
+      transform: translateX(0px);
+   }
+}
+
+
+@keyframes go-to-left {
+   0% {
+      transform: rotate(180deg) translateX(0px);
+   }
+
+   50% {
+      transform: rotate(180deg) translateX(50%);
+   }
+
+   100% {
+      transform: rotate(180deg) translateX(0px);
+   }
+}
+
+.go-to-catalog {
+   color: $green;
+   cursor: pointer;
+
+
+   &:hover {
+      div {
+         opacity: 0.7;
+      }
+
+      .button {
+         opacity: 0.7;
+
+      }
+
+      svg {
+         animation: go-to-right 0.5s linear;
+
+      }
+   }
+
+   .button {
+      transition: 0.3s;
+   }
+
+   div {
+      transition: 0.3s;
+	   @include adaptiv-value('margin-right',16,8,0);
+   }
+}
+
+.card-type2 {
+   height: 100%;
+   display: grid;
+   grid-template-rows: auto 1fr;
+   position: relative;
+
+
+
+   // .card-type2__action
+
+   &__action{
+      display: none;
+      position: absolute;
+      @include adaptiv-value('top',60,30,0);
+      left: 0;
+      @include adaptiv-value('padding-top',10,5,0);
+      @include adaptiv-value('padding-right',15,10,0);
+      @include adaptiv-value('padding-bottom',10,5,0);
+      @include adaptiv-value('padding-left',15,10,0);
+      font-family: 'Gabriela',sans-serif;
+      color: #000000;
+      background: #F4CB1F;
+      border-radius: 0px 0px 20px 0px;
+
+
+   }
+
+      // .card-type2__price-right
+   
+      &__price-right{
+         @include breakpoint(1024px){
+            margin-top: 10px; 
+         }
+      }
+
+   // .card-type2__price
+
+   &__price{
+      @include breakpoint(1024px){
+         flex-direction: column;
+         align-items: start;
+      }
+   }
+
+   &--action{
+      .card-type2__action{
+         display: block;
+      }
+   }
+
+   &--action3{
+      .card-type2__price-right{
+         background: #75E489;
+      }
+   }
+
+   &--action5{
+      .card-type2__price-right{
+         background: #F1DC83;
+      }
+   }
+
+   // .card-type2__img
+
+   &__img {
+      img {
+         width: 100%;
+      }
+   }
+
+   // .card-type2__wrapper
+
+   &__wrapper {
+      display: grid;
+      grid-template-rows: 1fr auto auto auto;
+      border-right: 1px solid #E6EDE6;
+      border-bottom: 1px solid #E6EDE6;
+      border-left: 1px solid #E6EDE6;
+      @include adaptiv-value('padding-top',20,10,0);
+      @include adaptiv-value('padding-right',20,10,0);
+      @include adaptiv-value('padding-bottom',40,20,0);
+      @include adaptiv-value('padding-left',20,10,0);
+
+      h3 {
+      @include adaptiv-value('margin-bottom',15,10,0);
+         flex-grow: 1;
+      }
+   }
+
+   // .card-type2__additional-info
+
+   &__additional-info {
+      @include adaptiv-value('margin-bottom',15,10,0);
+      font-family: 'Inter', sans-serif;
+      flex-shrink: 0;
+
+      span {
+         color: $gray;
+      @include adaptiv-value('font-size',14,10,0);
+         line-height: 120%;
+
+         &:first-child {
+      @include adaptiv-value('margin-right',40,20,0);
+         }
+      }
+   }
+
+   .rating {
+      @include adaptiv-value('margin-bottom',20,10,0);
+      flex-shrink: 0;
+   }
+
+   // .card-type2__price
+
+   &__price {
+      line-height: 120%;
+      font-family: 'Inter', sans-serif;
+      flex-shrink: 0;
+
+      b {
+         font-weight: 700;
+      }
+
+      sup {
+         display: inline-block;
+         color: $gray;
+      @include adaptiv-value('font-size',14,10,0);
+         transform: translateY(-50%);
+      }
+   }
+
+   // .card-type2__price-left
+
+   &__price-left{
+      
+   }
+
+   // .card-type2__price-right
+
+   &__price-right{
+      @include adaptiv-value('padding-top',5,5,0);
+      @include adaptiv-value('padding-right',10,10,0);
+      @include adaptiv-value('padding-bottom',5,5,0);
+      @include adaptiv-value('padding-left',10,10,0);
+      border-radius: 20px 0px;
+      font-family: 'Inter';
+      @include adaptiv-value('font-size',13,13,0);
+      color: #000000;
+
+      @include breakpoint(1024px){
+         margin-top: 10px; 
+      }
+      
+   }
+}
+
+.rating {
+   li {
+      @include adaptiv-value('margin-right',4,2,0);
+
+      &:last-child {
+         margin-right: 0px;
+      }
+   }
+}
+
+.title {
+   max-width: 600px;
+   @include adaptiv-value('font-size',60,32,0);
+   line-height: 100%;
+}
+
+.section{
+   @include adaptiv-value('margin-bottom',100,50,0);
+}
+
+.leaf{
+   position: absolute;
+}
+
+.leaf1{
+   @include adaptiv-value('width',320,160,0);
+   @include adaptiv-value('height',200,100,0);
+}
+
+.leaf2{
+   @include adaptiv-value('width',430,215,0);
+   @include adaptiv-value('height',470,435,0);
+}
+
+.change-slide {
+   position: absolute;
+   @include adaptiv-value('bottom',60,30,0);
+   left: 50%;
+   transform: translateX(-50%);
+   max-width: 450px;
+   width: 100%;
+   background: rgba(255, 255, 255, 0.71);
+   backdrop-filter: blur(10px);
+   border-radius: 0px 150px 150px 0px;
+   @include adaptiv-value('padding-top',30,15,0);
+   @include adaptiv-value('padding-right',30,15,0);
+   @include adaptiv-value('padding-bottom',30,15,0);
+   @include adaptiv-value('padding-left',30,15,0);
+	z-index: 2;
+
+   @include breakpoint(1024px){
+      position: static;
+      transform: translateX(0);
+      background: transparent;
+      backdrop-filter: none;
+      border-radius: 0;
+      padding: 0;
+   }
+
+   h3{
+   @include adaptiv-value('margin-bottom',25,15,0);
+   @include adaptiv-value('font-size',24,18,0);
+   }
+
+   p{
+      font-family: 'Inter';
+   @include adaptiv-value('font-size',16,12,0);
+      line-height: 120%;
+      color:$gray;
+   @include adaptiv-value('margin-bottom',20,10,0);
+   }
+
+   a{
+      display: inline-block;
+      font-family: 'Inter';
+   @include adaptiv-value('font-size',16,12,0);
+      line-height: 120%;
+      color:$green;
+   @include adaptiv-value('margin-bottom',30,15,0);
+      transition: 0.1s;
+
+      &:hover{
+         opacity: 0.6;
+      }
+   }
+
+	// .change-slide__buttons
+
+	&__buttons {
+      button{
+  
+
+         &:first-child{
+         @include adaptiv-value('margin-right',15,10,0);
+         }
+   
+         &:last-child{
+       @include adaptiv-value('margin-left',15,10,0);
+         }
+      }
+	}
+
+   // .change-slide__dot
+
+   &__dot{
+   @include adaptiv-value('width',15,10,0);
+   @include adaptiv-value('height',15,10,0);
+      border:3px solid #ECF3ED;
+      border-radius: 13px;
+      background: #ECF3ED;
+   @include adaptiv-value('margin-right',15,10,0);
+      transition: 0.2s;
+      cursor: pointer;
+
+      &:hover{
+         background: $green;
+      }
+
+      &:last-of-type{
+         margin-right: 0px;
+      }
+
+      &--active{
+         background: $green;
+      }
+   }
+}
+
+.filter{
+   @include adaptiv-value('margin-bottom',20,10,0);
+		font-family: 'Inter';
+
+		ul{
+      flex-wrap: wrap;	
+		}
+
+               // .filter__item
+
+               &__item{
+                  @include adaptiv-value('min-width',105,70,0);
+                  @include adaptiv-value('padding-right',10,5,0);
+                  @include adaptiv-value('padding-left',10,5,0);
+                  @include adaptiv-value('margin-bottom',20,10,0);
+               
+                           border-bottom:1px solid $gray;
+                           transition: 0.2s;
+                           line-height: 120%;
+                  @include adaptiv-value('padding-bottom',5,3,0);
+                  @include adaptiv-value('margin-right',50,25,0);
+                           transition: 0.2s;
+                              color:$gray;
+                           cursor: pointer;
+               
+                           &:hover{
+                                 color:$green;
+                                 border-bottom:1px solid $green;
+                           }
+               
+                           &:last-child{
+                              margin-right: 0px;
+                           }
+               
+                           &--active{
+                              color:$green;
+                                 border-bottom:1px solid $green;
+                           }
+            }	
+}
+
+.callback {
+   position: relative;
+
+   input{
+      display: block;
+      width: 100%;
+      background: transparent;
+      @include adaptiv-value('padding-top',30,15,0);
+      @include adaptiv-value('padding-right',50,25,0);
+      @include adaptiv-value('padding-bottom',30,15,0);
+      @include adaptiv-value('padding-left',50,25,0);
+      border: 1px solid #fff;
+      border-radius: 0px 50px;
+      font-family: 'Inter';
+   font-style: normal;
+   font-weight: 400;
+   @include adaptiv-value('font-size',18,14,0);
+   line-height: 120%;
+   color:#fff;
+
+&:focus{
+   outline: none;
+}
+
+&::placeholder{
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 400;
+   @include adaptiv-value('font-size',18,11,0);
+   line-height: 120%;
+   color: #ECF3ED;
+}
+   }
+
+   	// .callback__button
+
+		&__button {
+   @include adaptiv-value('padding-top',30,15,0);
+   @include adaptiv-value('padding-right',80,40,0);
+   @include adaptiv-value('padding-bottom',30,15,0);
+   @include adaptiv-value('padding-left',80,40,0);
+			border:none;
+			border-radius: 0px 50px;
+			background: #fff;
+         border: 1px solid #fff;
+			color:$green;
+         font-family: 'Inter';
+         font-style: normal;
+         font-weight: 500;
+   @include adaptiv-value('font-size',18,14,0);
+         line-height: 120%;
+			transition: 0.2s;
+			cursor: pointer;
+	
+			&:hover{
+            border-radius: 10px ;
+			}
+
+         @include breakpoint(768px){
+            border-radius: 10px;
+         }
+
+		}
+}
+
+.burger{
+   position: relative;
+   @include adaptiv-value('width',25,20,0);
+   @include adaptiv-value('height',20,18,0);
+   cursor: pointer;
+
+   span{
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #000;
+
+      &:first-child{
+      top: 0;
+      }
+   }
+   span{
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #000;
+
+      &:nth-child(1){
+      top: 0;
+      }
+
+      &:nth-child(2){
+         top: 50%;
+         transform: translateY(-50%);
+      }
+
+      &:nth-child(3){
+         bottom: 0;
+      }
+
+   }
+}
+
+.close{
+   position: absolute;
+   @include adaptiv-value('width',25,20,0);
+   @include adaptiv-value('height',20,20,0);
+   cursor: pointer;
+   top: 20px;
+   right: 10px;
+
+   span{
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #000;
+
+      &:first-child{
+      top: 0;
+      }
+   }
+   span{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #000;
+
+      &:nth-child(1){
+         transform: rotate(45deg);
+      }
+
+      &:nth-child(2){
+         transform: rotate(-45deg);
+      }
+   }
+}
+
+.burger-menu {
+   position: fixed;
+   top: 0;
+   left: -100vw;
+   width: 100vw;
+   height: 100vh;
+   background: #fff;
+   z-index: 999;
+   overflow: auto;
+
+
+   // .burger-menu__row
+
+   &__row {
+      grid-template-rows: auto 1fr auto;
+      height: 100vh;
+      padding: 30px 20px;
+      overflow: auto;
+
+   }
+
+   // .burger-menu__top
+
+   &__top {
+      margin-bottom: 40px;
+   }
+
+   // .burger-menu__top-left
+
+   &__top-left {
+      margin-right: 10px;
+
+   }
+
+   // .burger-menu__top-right
+
+   &__top-right {
+   }
+
+   // .burger-menu__content
+
+   &__content {
+      margin-bottom: 20px;
+   }
+
+   // .burger-menu__content-items
+
+   &__content-items {
+
+      &:first-child{
+      margin-right: 10px;
+
+      }
+
+      li{
+         margin-bottom:50px;
+
+         svg{
+            width: 12px;
+            height: 12px;
+         }
+
+         a{
+	      font-size: 24px;
+         line-height: 100%;
+            color:#000;
+         }
+
+         span{
+            margin-right: 10px;
+         }
+      }
+   }
+
+   // .burger-menu__bottom
+
+   &__bottom {
+   
+   }
+
+   // .burger-menu__bottom-left
+
+   &__bottom-left {
+      margin-right: 10px;
+
+
+      li{
+         margin-right: 20px;
+
+         &:last-child{
+            margin-right: 0px;
+         }
+      }
+   }
+
+   // .burger-menu__bottom-right
+
+   &__bottom-right {
+      img{
+         margin-right: 7px;
+      }
+   }
+}
+
