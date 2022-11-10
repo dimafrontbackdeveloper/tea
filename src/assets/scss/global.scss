@@ -221,8 +221,13 @@ body {
    display: grid;
    grid-template-rows: auto 1fr;
    position: relative;
+   transition: 0.2s;
+   cursor: pointer;
 
-
+   &:hover{
+      transform: scale(101%);
+      opacity: 0.7;
+   }
 
    // .card-type2__action
 

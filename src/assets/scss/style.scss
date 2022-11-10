@@ -1023,3 +1023,18 @@
 		}
 	}
 }
+
+.footer{font-family: 'Inter';
+
+	@include adaptiv-value('font-size',14,10,0);
+	@include adaptiv-value('padding-top',30,15,0);
+	@include adaptiv-value('padding-bottom',30,15,0);
+	background: #2F4733;
+	color:$gray;
+
+	// .footer__left
+
+	&__left{
+		margin-right: 10px;
+	}
+}
